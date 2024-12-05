@@ -1,3 +1,14 @@
+#' Get matrices for a specific cell type with specific cell IDs
+#'
+#' @param cell_type A string for which cell type it should be filtering for.
+#' @param sample_list A list of matrices. Ensure all the matrices have the same number of rows (genes). The genes should be the same for all matrices and in the same order.
+#' @param prefix The prefix that your cell IDs should have.
+#'
+#' @return A filtered matrix.
+#' @export
+#'
+#' @examples
+#' generate_cell_types("Ast", sample_list, "Cohort_name_")
 generate_cell_types <- function(cell_type, sample_list, prefix) {
   final_list <- base::list()
 

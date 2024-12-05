@@ -1,12 +1,15 @@
 Package: curatoR
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
-Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+Title: Set of functions for analyzing genetic data, wrangling matrices, and curator-specific tasks
+Version: 0.0.1
+Authors@R: c(
+    person("Rui", "Xiang Yu", , "xxiangyu@student.ubc.ca", role = c("aut", "cre")),
+    person("Nairuz", "Elazzabi", , "nayrouz@student.ubc.ca", role = c("aut")))
+Description: The package curatoR contains functions that are aimed to help the analysis of genetic data. More specifically, it aids the analysis of single-cell RNA sequencing data. However, some functions could still be used for general use, such as for wrangling matrices. Most of the functions in this package originated from Rui's project at the Pavlidis Lab, which can be found in https://github.com/xnrxng/PavlabSZProject/. Some functions can be used by the curators at the Pavlidis lab.
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
+Imports:
+  Matrix
+Suggests:
+  testthat
