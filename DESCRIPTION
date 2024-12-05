@@ -13,3 +13,5 @@ Imports:
   Matrix
 Suggests:
   testthat
+URL: https://github.com/xnrxng/curatoR
+BugReports: https://github.com/xnrxng/curatoR/issues
