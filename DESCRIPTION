@@ -10,8 +10,12 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Imports:
-  Matrix
+    readr,
+    Matrix,
+    dplyr
 Suggests:
-  testthat
+    testthat (>= 3.0.0),
+    tibble
 URL: https://github.com/xnrxng/curatoR
 BugReports: https://github.com/xnrxng/curatoR/issues
+Config/testthat/edition: 3
