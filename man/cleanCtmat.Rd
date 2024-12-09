@@ -9,9 +9,9 @@ cleanCtmat(ctmat, geneThr = 0.02, sampleThr = 0.05)
 \arguments{
 \item{ctmat}{A numeric matrix where rows represent genes and columns represent samples (e.g., cells).}
 
-\item{geneThr}{A numeric value between 0 and 1 specifying the minimum proportion of cells in which a gene must be expressed to be retained.}
+\item{geneThr}{A numeric value between 0 and 1 specifying the minimum proportion of cells in which a gene must be expressed to be retained. The default is 0.02.}
 
-\item{sampleThr}{A numeric value between 0 and 1 specifying the minimum rank percentile for the number of genes expressed in a sample to retain that sample. For example, if sampleThr = 0.05, samples in the bottom 5\% (based on the number of expressed genes) will be filtered out.}
+\item{sampleThr}{A numeric value between 0 and 1 specifying the minimum rank percentile for the number of genes expressed in a sample to retain that sample. The default is 0.05.}
 }
 \value{
 The filtered matrix.

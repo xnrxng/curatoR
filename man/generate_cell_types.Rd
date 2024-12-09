@@ -2,33 +2,34 @@
 % Please edit documentation in R/generate_cell_types.R
 \name{generate_cell_types}
 \alias{generate_cell_types}
-\title{Get matrices for a specific cell type with specific cell IDs}
+\title{Generate cell type specific matrices with unique column names}
 \usage{
-generate_cell_types(cell_type, sample_list, prefix)
+generate_cell_types(cell_types, sample_list, prefix)
 }
 \arguments{
-\item{cell_type}{A string for which cell type it should be filtering for.}
+\item{cell_types}{Vector of cell types to process (e.g., c("T_cells", "B_cells")).}
 
-\item{sample_list}{A list of matrices. Ensure all the matrices have the same number of rows (genes). The genes should be the same for all matrices and in the same order. The names of the columns should be the cell types.}
+\item{sample_list}{List of matrices where rows are genes and columns are cells. Each matrix should have column names indicating cell types. Genes should be the same (same number and order) for all matrices.}
 
-\item{prefix}{The prefix that your cell IDs should have.}
+\item{prefix}{to include in the column names of the output.}
 }
 \value{
-A sparse filtered matrix.
+A list of sparse matrices (one for each cell type in cell_types), with unique column names and shared row names.
 }
 \description{
-Get matrices for a specific cell type with specific cell IDs
+Generate cell type specific matrices with unique column names
 }
 \examples{
 
-set.seed(2024)
-sample1 <- matrix(rnorm(20), nrow = 5, ncol = 4,
-dimnames = list(paste0("Gene", 1:5),
- c("Ast", "Neu", "Oligo", "Ast")))
-sample2 <- matrix(rnorm(20), nrow = 5, ncol = 4,
- dimnames = list(paste0("Gene", 1:5),
-  c("Ast", "Ast", "Oligo", "Microglia")))
+sample1 <- matrix(c(1, 2, 3, 4, 5, 6), nrow = 3,
+dimnames = list(c("Gene1", "Gene2", "Gene3"), c("T_cells", "B_cells")))
+sample2 <- matrix(c(7, 8, 9, 10, 11, 12), nrow = 3,
+dimnames = list(c("Gene1", "Gene2", "Gene3"), c("T_cells", "B_cells")))
 sample_list <- list(sample1, sample2)
 
-generate_cell_types("Ast", sample_list, "Cohort_name_")
+cell_types <- c("T_cells", "B_cells")
+
+prefix <- "Sample_"
+
+generate_cell_types(cell_types, sample_list, prefix)
 }
