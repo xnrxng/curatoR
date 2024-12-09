@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 # curatoR
 
 <!-- badges: start -->
+[![R-CMD-check](https://github.com/xnrxng/curatoR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/xnrxng/curatoR/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The package curatoR contains functions that are aimed to help the analysis of genetic data. More specifically, it aids the analysis of single-cell RNA sequencing data. However, some functions could still be used for general use, such as for wrangling matrices. Most of the functions in this package originated from Rui's project at the Pavlidis Lab, which can be found in https://github.com/xnrxng/PavlabSZProject/. Some functions can be used by the curators at the Pavlidis lab.

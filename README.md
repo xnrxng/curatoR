@@ -4,6 +4,7 @@
 # curatoR
 
 <!-- badges: start -->
+[![R-CMD-check](https://github.com/xnrxng/curatoR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/xnrxng/curatoR/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The package curatoR contains functions that are aimed to help the
