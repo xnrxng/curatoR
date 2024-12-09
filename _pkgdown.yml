@@ -1,4 +1,6 @@
 url: https://xnrxng.github.io/curatoR/
 template:
   bootstrap: 5
-
+  bslib:
+    bootswatch: minty
+    pkgdown-nav-height: 100px

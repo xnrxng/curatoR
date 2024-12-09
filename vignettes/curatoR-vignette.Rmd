@@ -233,7 +233,7 @@ This function TMM normalizes a pseudobulk matrix and then performs DEA with the 
 This function takes 2 parameters:
 
 -   PB: The output of create_pseudobulk.
--   design: To specify the groups of interest. E.g. design <- model.matrix(~ group, data = PB$meta)
+-   design: To specify the groups of interest. E.g. design \<- model.matrix(\~ group, data = PB\$meta)
 
 ```{r}
 design <- model.matrix(~ group, data = pseudo_bulk$meta)
@@ -252,7 +252,7 @@ This function CPMLog normalizes a pseudobulk matrix and then performs DEA with t
 This function takes 2 parameters:
 
 -   PB: The output of create_pseudobulk.
--   design: To specify the groups of interest. E.g. design <- model.matrix(~ group, data = PB$meta)
+-   design: To specify the groups of interest. E.g. design \<- model.matrix(\~ group, data = PB\$meta)
 
 ```{r}
 design <- model.matrix(~ group, data = pseudo_bulk$meta)
