@@ -11,7 +11,7 @@ generate_cell_types(cell_types, sample_list, prefix)
 
 \item{sample_list}{List of matrices where rows are genes and columns are cells. Each matrix should have column names indicating cell types. Genes should be the same (same number and order) for all matrices.}
 
-\item{prefix}{to include in the column names of the output.}
+\item{prefix}{Prefix to include in the column names of the output.}
 }
 \value{
 A list of sparse matrices (one for each cell type in cell_types), with unique column names and shared row names.

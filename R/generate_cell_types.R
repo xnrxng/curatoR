@@ -2,7 +2,7 @@
 #'
 #' @param cell_types Vector of cell types to process (e.g., c("T_cells", "B_cells")).
 #' @param sample_list List of matrices where rows are genes and columns are cells. Each matrix should have column names indicating cell types. Genes should be the same (same number and order) for all matrices.
-#' @param prefix to include in the column names of the output.
+#' @param prefix Prefix to include in the column names of the output.
 #'
 #' @return A list of sparse matrices (one for each cell type in cell_types), with unique column names and shared row names.
 #' @export
@@ -46,17 +46,15 @@ generate_cell_types <- function(cell_types, sample_list, prefix) {
       stop("Error: All samples must have the same rownames (genes).")
     }
 
-    for (sample_data in sample_list) {
-      cell_counter <- 1
+    cell_counter <- 1
+    for (sample_idx in seq_along(sample_list)) {
+      sample_data <- sample_list[[sample_idx]]
+      matching_cols <- base::which(base::colnames(sample_data) == ct)
 
-      for (col_idx in base::seq_along(base::colnames(sample_data))){
-        column <- base::colnames(sample_data)[col_idx]
-
-        if (column == ct) {
-          new_column_name <- base::paste0(prefix, ct, cell_counter)
-          cell_counter <- cell_counter + 1
-          final_list[[new_column_name]] <- sample_data[, col_idx]
-        }
+      for (col_idx in matching_cols) {
+        new_column_name <- base::paste0(prefix, ct, "_Sample", sample_idx, "_", cell_counter)
+        cell_counter <- cell_counter + 1
+        final_list[[new_column_name]] <- sample_data[, col_idx]
       }
     }
     final_dataframe <- base::as.data.frame(final_list, check.names = FALSE)

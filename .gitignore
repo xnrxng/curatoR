@@ -6,3 +6,6 @@
 .quarto
 .RData
 .Rproj
+inst/doc
+/doc/
+/Meta/
