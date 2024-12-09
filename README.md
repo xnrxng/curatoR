@@ -4,6 +4,7 @@
 # curatoR
 
 <!-- badges: start -->
+
 [![R-CMD-check](https://github.com/xnrxng/curatoR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/xnrxng/curatoR/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
@@ -33,4 +34,4 @@ devtools::install_github("xnrxng/curatoR")
 ## Usage
 
 To see the functions available and how to use them, please refer to our
-vignette.
+[vignette](https://xnrxng.github.io/curatoR/).
