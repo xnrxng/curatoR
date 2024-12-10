@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# curatoR
+# curatoR <a href="https://xnrxng.github.io/curatoR/"><img src="man/figures/logo.png" align="right" height="120" alt="curatoR website" /></a>
 
 <!-- badges: start -->
 
