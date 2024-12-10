@@ -5,7 +5,7 @@ template:
   bslib:
     bg: "#fbfbfb"
     fg: "#575757"
-    primary: "#ffccdd"
+    primary: "#ff9bc5"
     code-bg: "#e0f0ff"
     base_font: {google: "Montserrat"}
     heading_font: {google: "Montserrat"}
