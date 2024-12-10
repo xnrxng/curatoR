@@ -4,7 +4,11 @@ template:
   theme: breeze-light
   bslib:
     primary: "#e39dbb"
-    navbar-background: "#ffcce2"
+    navbar-bg: "#ffcce2"
+    navbar-light-bg: "#ffcce2"
+    navbar-light-color: "#ffcce2"
+    bg: "#fbfbfb"
+    fg: "#575757"
     code-bg: "#e0f0ff"
     base_font: {google: "Montserrat"}
     heading_font: {google: "Montserrat"}
