@@ -5,10 +5,9 @@ template:
   bslib:
     bg: "#fbfbfb"
     fg: "#575757"
-    primary: "#ff9bc5"
+    primary: "#e39dbb"
+    navbar-background: "#ffcce2"
     code-bg: "#e0f0ff"
     base_font: {google: "Montserrat"}
     heading_font: {google: "Montserrat"}
     code_font: {google: "JetBrains Mono"}
-  navbar:
-    bg: primary
