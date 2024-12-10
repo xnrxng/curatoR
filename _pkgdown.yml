@@ -3,8 +3,6 @@ template:
   bootstrap: 5
   theme: breeze-light
   bslib:
-    bg: "#fbfbfb"
-    fg: "#575757"
     primary: "#e39dbb"
     navbar-background: "#ffcce2"
     code-bg: "#e0f0ff"
