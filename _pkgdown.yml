@@ -1,6 +1,12 @@
 url: https://xnrxng.github.io/curatoR/
 template:
   bootstrap: 5
+  theme: breeze-light
   bslib:
-    bootswatch: minty
-    pkgdown-nav-height: 100px
+    bg: "#fbfbfb"
+    fg: "#575757"
+    primary: "#ffccdd"
+    code-bg: "#e0f0ff"
+    base_font: {google: "Montserrat"}
+    heading_font: {google: "Montserrat"}
+    code_font: {google: "JetBrains Mono"}
