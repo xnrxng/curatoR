@@ -10,3 +10,5 @@ template:
     base_font: {google: "Montserrat"}
     heading_font: {google: "Montserrat"}
     code_font: {google: "JetBrains Mono"}
+  navbar:
+    bg: primary
