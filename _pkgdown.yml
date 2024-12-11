@@ -11,3 +11,4 @@ template:
     code_font: {google: "JetBrains Mono"}
 navbar:
   bg: primary
+  type: dark
