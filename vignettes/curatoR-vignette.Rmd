@@ -1,5 +1,5 @@
 ---
-title: "curatoR-vignette"
+title: "curatoR tutorial"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{curatoR-vignette}
@@ -261,3 +261,13 @@ res_limma <- limma_dge(design, pseudo_bulk)
 
 print(res_limma)
 ```
+
+## 10. get_cell_type_file()
+
+This function takes in a raw file and wrangles it so that it is according to how Gemma needs them. This function takes in 5 parameters:
+
+-   file_path: a string that contains the path to the raw file.
+-   remove_prefix: whether to remove the barcodes' prefix. Default is FALSE.
+-   remove_suffix: whether to remove the barcodes' suffix. Defaulst is FALSE.
+-   id_col: a string. You can specify which column is the barcodes column if there are more than one. Default is NULL.
+-   type_col: a string. You can specify which column is the cell type column if there are more than one. Default is NULL.
