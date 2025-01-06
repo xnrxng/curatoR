@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>curatoR-vignette • curatoR</title>
+<title>curatoR tutorial • curatoR</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -18,7 +18,7 @@
 <link href="../deps/JetBrains_Mono-0.4.9/font.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="curatoR-vignette">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="curatoR tutorial">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -41,7 +41,7 @@
 <li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../articles/curatoR-vignette.html">curatoR-vignette</a></li>
+<li><a class="dropdown-item" href="../articles/curatoR-vignette.html">curatoR tutorial</a></li>
   </ul>
 </li>
       </ul>
@@ -62,7 +62,7 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="../logo.png" class="logo" alt=""><h1>curatoR-vignette</h1>
+      <img src="../logo.png" class="logo" alt=""><h1>curatoR tutorial</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/xnrxng/curatoR/blob/master/vignettes/curatoR-vignette.Rmd" class="external-link"><code>vignettes/curatoR-vignette.Rmd</code></a></small>
@@ -107,6 +107,8 @@ available through <code><a href="https://rdrr.io/r/datasets/mtcars.html" class="
 <span><span class="va">comma_delimiter</span> <span class="op">&lt;-</span> <span class="st">","</span></span>
 <span></span>
 <span><span class="va">loaded_dataset</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_w_new_col.html">load_w_new_col</a></span><span class="op">(</span><span class="va">dataset_url</span>, <span class="va">new_col_names</span>, <span class="va">comma_delimiter</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error in get(paste0(generic, ".", class), envir = get_method_env()) : </span></span>
+<span><span class="co">#&gt;   object 'type_sum.accel' not found</span></span>
 <span><span class="co">#&gt; <span style="font-weight: bold;">Rows: </span><span style="color: #0000BB;">32</span> <span style="font-weight: bold;">Columns: </span><span style="color: #0000BB;">12</span></span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">──</span> <span style="font-weight: bold;">Column specification</span> <span style="color: #00BBBB;">────────────────────────────────────────────────────────</span></span></span>
 <span><span class="co">#&gt; <span style="font-weight: bold;">Delimiter:</span> ","</span></span>
@@ -433,6 +435,24 @@ model.matrix(~ group, data = PB$meta)</li>
 <span><span class="co">#&gt; Gene3  0.22700091 17.68798  0.6859200 0.5232677 0.9064321 -4.619125</span></span>
 <span><span class="co">#&gt; Gene5  0.03126067 17.70526  0.1236196 0.9064321 0.9064321 -4.666733</span></span>
 <span><span class="co">#&gt; Gene1 -0.11980888 17.91918 -0.9105933 0.4042704 0.9064321 -4.671289</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="get_cell_type_file">10. get_cell_type_file()<a class="anchor" aria-label="anchor" href="#get_cell_type_file"></a>
+</h2>
+<p>This function takes in a raw file and wrangles it so that it is
+according to how Gemma needs them. This function takes in 5
+parameters:</p>
+<ul>
+<li>file_path: a string that contains the path to the raw file.</li>
+<li>remove_prefix: whether to remove the barcodes’ prefix. Default is
+FALSE.</li>
+<li>remove_suffix: whether to remove the barcodes’ suffix. Defaulst is
+FALSE.</li>
+<li>id_col: a string. You can specify which column is the barcodes
+column if there are more than one. Default is NULL.</li>
+<li>type_col: a string. You can specify which column is the cell type
+column if there are more than one. Default is NULL.</li>
+</ul>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
