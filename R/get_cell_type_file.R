@@ -54,6 +54,8 @@ get_cell_type_file <- function(file_path, remove_prefix = FALSE, remove_suffix =
     raw_file[, cell_id := sub("[-_\\t\\s][^-_\\t\\s]*$", "", cell_id)]
   }
 
+  raw_file <- unique(raw_file)
+
   readr::write_tsv(raw_file, "cleaned_annotations.tsv")
 
   return(raw_file)
