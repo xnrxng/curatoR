@@ -3,7 +3,7 @@ pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   curatoR-vignette: curatoR-vignette.html
-last_built: 2025-01-07T20:40Z
+last_built: 2025-01-08T23:53Z
 urls:
   reference: https://xnrxng.github.io/curatoR/reference
   article: https://xnrxng.github.io/curatoR/articles
