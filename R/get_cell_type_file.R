@@ -56,6 +56,18 @@ get_cell_type_file <- function(file_path, remove_prefix = FALSE, remove_suffix =
 
   raw_file <- unique(raw_file)
 
+  more_celltype <- raw_file |>
+    dplyr::group_by(cell_id) |>
+    dplyr::filter(dplyr::n_distinct(cell_type) > 1) |>
+    dplyr::ungroup()
+
+  raw_file <- raw_file[!(raw_file$cell_id %in% more_celltype$cell_id), ]
+
+  if(nrow(more_celltype) >= 1){
+    print("These cell IDs had more than one cell type assigned, and hence, removed.")
+    print(more_celltype$cell_id)
+  }
+
   readr::write_tsv(raw_file, "cleaned_annotations.tsv")
 
   return(raw_file)
