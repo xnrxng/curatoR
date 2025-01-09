@@ -42,7 +42,7 @@
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_cell_type_file</span><span class="op">(</span></span>
-<span>  <span class="va">file_path</span>,</span>
+<span>  <span class="va">input</span>,</span>
 <span>  remove_prefix <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  remove_suffix <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  id_col <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -54,8 +54,8 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
 
 
-<dl><dt id="arg-file-path">file_path<a class="anchor" aria-label="anchor" href="#arg-file-path"></a></dt>
-<dd><p>A string that denotes where the file is.</p></dd>
+<dl><dt id="arg-input">input<a class="anchor" aria-label="anchor" href="#arg-input"></a></dt>
+<dd><p>A string that denotes where the file is, or a data frame.</p></dd>
 
 
 <dt id="arg-remove-prefix">remove_prefix<a class="anchor" aria-label="anchor" href="#arg-remove-prefix"></a></dt>
@@ -76,7 +76,7 @@
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A cleaned data table with two columns, cell_id and cell_type.</p>
+    <p>A cleaned data table with two columns, cell_id and cell_type. Optionally a third column, sample_id.</p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
