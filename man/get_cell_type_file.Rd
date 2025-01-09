@@ -5,7 +5,7 @@
 \title{Get cleaned cell type annotations}
 \usage{
 get_cell_type_file(
-  file_path,
+  input,
   remove_prefix = FALSE,
   remove_suffix = FALSE,
   id_col = NULL,
@@ -13,7 +13,7 @@ get_cell_type_file(
 )
 }
 \arguments{
-\item{file_path}{A string that denotes where the file is.}
+\item{input}{A string that denotes where the file is, or a data frame.}
 
 \item{remove_prefix}{TRUE or FALSE. Whether to remove the barcodes' prefix.}
 
@@ -24,7 +24,7 @@ get_cell_type_file(
 \item{type_col}{The name of the cell type column.}
 }
 \value{
-A cleaned data table with two columns, cell_id and cell_type.
+A cleaned data table with two columns, cell_id and cell_type. Optionally a third column, sample_id.
 }
 \description{
 Get cleaned cell type annotations

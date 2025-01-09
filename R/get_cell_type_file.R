@@ -1,16 +1,20 @@
 #' Get cleaned cell type annotations
 #'
-#' @param file_path A string that denotes where the file is.
+#' @param input A string that denotes where the file is, or a data frame.
 #' @param remove_prefix TRUE or FALSE. Whether to remove the barcodes' prefix.
 #' @param remove_suffix TRUE or FALSE. Whether to remove the barcodes' suffix.
 #' @param id_col The name of the barcodes column.
 #' @param type_col The name of the cell type column.
 #'
-#' @return A cleaned data table with two columns, cell_id and cell_type.
+#' @return A cleaned data table with two columns, cell_id and cell_type. Optionally a third column, sample_id.
 #' @export
-get_cell_type_file <- function(file_path, remove_prefix = FALSE, remove_suffix = FALSE, id_col = NULL, type_col = NULL){
+get_cell_type_file <- function(input, remove_prefix = FALSE, remove_suffix = FALSE, id_col = NULL, type_col = NULL){
   # read the file
-  raw_file <- data.table::fread(file_path)
+  if (is.character(input) && file.exists(input)) {
+    raw_file <- data.table::fread(input)
+  } else {
+    raw_file <- input
+  }
 
   if (!is.null(id_col)){
     if (id_col %in% names(raw_file)) {
@@ -21,7 +25,7 @@ get_cell_type_file <- function(file_path, remove_prefix = FALSE, remove_suffix =
   }
   else{
   # find column that looks like barcodes and rename it to cell_id
-  barcode_col <- grep("barcode|cell_id|cellid|barcodes|orig.ident", names(raw_file), ignore.case = TRUE, value = TRUE)
+  barcode_col <- grep("barcode|cell_id|cellid|barcodes|orig.ident|V1", names(raw_file), ignore.case = TRUE, value = TRUE)
   if (length(barcode_col) == 1) {
     data.table::setnames(raw_file, barcode_col, "cell_id")
   } else {
@@ -36,7 +40,7 @@ get_cell_type_file <- function(file_path, remove_prefix = FALSE, remove_suffix =
     }
     }else{
   # find column that looks like cell types and rename it to cell_type
-  cell_type_col <- grep("celltype|cell_type|type|cluster|clusters|seurat_clusters", names(raw_file), ignore.case = TRUE, value = TRUE)
+  cell_type_col <- grep("celltype|cell_type|celltypes|cell_types|type|cluster|clusters|seurat_clusters|louvain|leiden", names(raw_file), ignore.case = TRUE, value = TRUE)
   if (length(cell_type_col) == 1) {
     data.table::setnames(raw_file, cell_type_col, "cell_type")
   } else {
