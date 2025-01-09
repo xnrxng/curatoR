@@ -25,7 +25,7 @@ get_cell_type_file <- function(file_path, remove_prefix = FALSE, remove_suffix =
   if (length(barcode_col) == 1) {
     data.table::setnames(raw_file, barcode_col, "cell_id")
   } else {
-    stop("Could not identify a unique column for barcodes.")
+    stop("Could not identify a unique column for barcodes. Specify one with the id_col argument.")
   }}
 
   if (!is.null(type_col)){
@@ -40,11 +40,8 @@ get_cell_type_file <- function(file_path, remove_prefix = FALSE, remove_suffix =
   if (length(cell_type_col) == 1) {
     data.table::setnames(raw_file, cell_type_col, "cell_type")
   } else {
-    stop("Could not identify a unique column for cell types.")
+    stop("Could not identify a unique column for cell types. Specify one with the type_col argument.")
   }}
-
-  raw_file <- raw_file |>
-    dplyr::select(cell_id, cell_type)
 
   if (remove_prefix){
     raw_file[, cell_id := sub("^[^\\t\\s\\-_]*[\\t\\s\\-_]+", "", cell_id)]
@@ -54,17 +51,32 @@ get_cell_type_file <- function(file_path, remove_prefix = FALSE, remove_suffix =
     raw_file[, cell_id := sub("[-_\\t\\s][^-_\\t\\s]*$", "", cell_id)]
   }
 
+  if ("sample_id" %in% colnames(raw_file)) {
+    raw_file <- raw_file |>
+      dplyr::select(cell_id, cell_type, sample_id)
+  } else{
+    raw_file <- raw_file |>
+      dplyr::select(cell_id, cell_type)
+  }
+
   raw_file <- unique(raw_file)
 
-  more_celltype <- raw_file |>
-    dplyr::group_by(cell_id) |>
-    dplyr::filter(dplyr::n_distinct(cell_type) > 1) |>
-    dplyr::ungroup()
+  if ("sample_id" %in% colnames(raw_file)) {
+    more_celltype <- raw_file |>
+      dplyr::group_by(cell_id, sample_id) |>
+      dplyr::filter(dplyr::n_distinct(cell_type) > 1) |>
+      dplyr::ungroup()
+  } else{
+    more_celltype <- raw_file |>
+      dplyr::group_by(cell_id) |>
+      dplyr::filter(dplyr::n_distinct(cell_type) > 1) |>
+      dplyr::ungroup()
+  }
 
   raw_file <- raw_file[!(raw_file$cell_id %in% more_celltype$cell_id), ]
 
   if(nrow(more_celltype) >= 1){
-    print("These cell IDs had more than one cell type assigned, and hence, removed.")
+    print("These cell IDs had more than one cell type assigned, and hence, were removed.")
     print(more_celltype$cell_id)
   }
 
