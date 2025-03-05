@@ -5,10 +5,11 @@
 #' @param remove_suffix TRUE or FALSE. Whether to remove the barcodes' suffix.
 #' @param id_col The name of the barcodes column.
 #' @param type_col The name of the cell type column.
+#' @param sample_col The name of the sample IDs column. Optional.
 #'
 #' @return A cleaned data table with two columns, cell_id and cell_type. Optionally a third column, sample_id.
 #' @export
-get_cell_type_file <- function(input, remove_prefix = FALSE, remove_suffix = FALSE, id_col = NULL, type_col = NULL){
+get_cell_type_file <- function(input, remove_prefix = FALSE, remove_suffix = FALSE, id_col = NULL, type_col = NULL, sample_col = NULL){
   # read the file
   if (is.character(input) && file.exists(input)) {
     raw_file <- data.table::fread(input)
@@ -55,6 +56,14 @@ get_cell_type_file <- function(input, remove_prefix = FALSE, remove_suffix = FAL
     raw_file[, cell_id := sub("[-_\\t\\s][^-_\\t\\s]*$", "", cell_id)]
   }
 
+  if (!is.null(sample_col)){
+    if (sample_col %in% names(raw_file)) {
+      data.table::setnames(raw_file, sample_col, "sample_id")
+    } else {
+      stop(paste("Specified sample_col", sample_col, "does not exist in the file."))
+    }
+  }
+
   if ("sample_id" %in% colnames(raw_file)) {
     raw_file <- raw_file |>
       dplyr::select(cell_id, cell_type, sample_id)
@@ -83,6 +92,15 @@ get_cell_type_file <- function(input, remove_prefix = FALSE, remove_suffix = FAL
     print("These cell IDs had more than one cell type assigned, and hence, were removed.")
     print(more_celltype$cell_id)
   }
+
+  unwanted_values <- c("unknown", "other", "others", "unspecified", "not specified", "not available",
+    "n/a", "na", "none", "missing", "null", "no data", "not reported", "not recorded",
+    "declined", "refused", "prefer not to say", "unclassified", "")
+
+  raw_file <- raw_file |>
+    filter(!tolower(cell_type) %in% unwanted_values) |>
+    filter(!is.na(cell_type)) |>
+    filter(!is.null(cell_type))
 
   readr::write_tsv(raw_file, "cleaned_annotations.tsv")
 

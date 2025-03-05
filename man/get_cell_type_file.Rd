@@ -9,7 +9,8 @@ get_cell_type_file(
   remove_prefix = FALSE,
   remove_suffix = FALSE,
   id_col = NULL,
-  type_col = NULL
+  type_col = NULL,
+  sample_col = NULL
 )
 }
 \arguments{
@@ -22,6 +23,8 @@ get_cell_type_file(
 \item{id_col}{The name of the barcodes column.}
 
 \item{type_col}{The name of the cell type column.}
+
+\item{sample_col}{The name of the sample IDs column. Optional.}
 }
 \value{
 A cleaned data table with two columns, cell_id and cell_type. Optionally a third column, sample_id.
