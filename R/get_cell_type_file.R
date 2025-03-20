@@ -17,6 +17,8 @@ get_cell_type_file <- function(input, remove_prefix = FALSE, remove_suffix = FAL
     raw_file <- input
   }
 
+  raw_file <- data.table::data.table(raw_file)
+
   if (!is.null(id_col)){
     if (id_col %in% names(raw_file)) {
       data.table::setnames(raw_file, id_col, "cell_id")
