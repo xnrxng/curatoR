@@ -30,7 +30,7 @@ get_mex_files <- function(path, sample_list, meta, final_path) {
 
     write.table(
       new_columns,
-      file = gzfile(paste0(final_path, "/", sample, "/", sample, "_barcodes.tsv.gz")),
+      file = gzfile(paste0(final_path, "/", sample, "/barcodes.tsv.gz")),
       sep = "\t",
       row.names = FALSE,
       quote = FALSE,
@@ -40,7 +40,7 @@ get_mex_files <- function(path, sample_list, meta, final_path) {
     genes <- rownames(sample_data)
     write.table(
       genes,
-      file = gzfile(paste0(final_path, "/", sample, "/", sample, "_features.tsv.gz")),
+      file = gzfile(paste0(final_path, "/", sample, "/features.tsv.gz")),
       sep = "\t",
       row.names = FALSE,
       quote = FALSE,
@@ -49,8 +49,8 @@ get_mex_files <- function(path, sample_list, meta, final_path) {
 
     mat <- as.matrix(sample_data)
     sparse_mat <- as(mat, "dgCMatrix")
-    writeMM(sparse_mat, file = paste0(final_path, "/", sample, "/", sample, "_matrix.mtx"))
-    gzip(paste0(final_path, "/", sample, "/", sample, "_matrix.mtx"), destname = paste0(final_path, "/", sample, "/", sample, "_matrix.mtx.gz"))
+    writeMM(sparse_mat, file = paste0(final_path, "/", sample, "/matrix.mtx"))
+    gzip(paste0(final_path, "/", sample, "/matrix.mtx"), destname = paste0(final_path, "/", sample, "/matrix.mtx.gz"))
 
 
     individual_metadata <- meta[meta$Individual_ID == sample, ]
